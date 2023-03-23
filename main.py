@@ -8,13 +8,13 @@ root = Tk()
 root.resizable(0, 0)
 root.minsize(500, 500)
 root.config(padx=15, pady=15, bg="green")
-root.iconimage = PhotoImage(file="icon_img.png")
+root.iconimage = PhotoImage(file="images/icon_img.png")
 root.iconphoto(False, root.iconimage)
 root.title("Sculpture Survey")
 
 
-canvas = Canvas(width=282, height=185, cursor="circle", bg="black", highlightthickness=0)
-filename = ImageTk.PhotoImage(Image.open("sculpture_img.jpg"))
+canvas = Canvas(root, width=282, height=185, cursor="circle", bg="black", highlightthickness=0)
+filename = ImageTk.PhotoImage(Image.open("images/sculpture_img.jpg"))
 canvas.create_image(148, 95, image=filename)
 canvas.pack()
 
