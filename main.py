@@ -6,7 +6,7 @@ from database import connect_database
 
 
 root = Tk()
-root.resizable(0, 0)
+root.resizable(False, False)
 root.minsize(500, 500)
 root.config(padx=15, pady=15, bg="green")
 root.iconimage = PhotoImage(file="images/icon_img.png")

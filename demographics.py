@@ -1,8 +1,8 @@
 from tkinter import *
 from tkcalendar import DateEntry
 from tkinter import ttk
-from data_txt import save
 from database import submit
+from data_txt import save
 
 
 # funcs parameter will have the reference of all the functions that are passed as arguments
