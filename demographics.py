@@ -1,8 +1,79 @@
 from tkinter import *
 from tkcalendar import DateEntry
 from tkinter import ttk
-from tkinter import messagebox
+from data_txt import save
+from database import submit
 
+
+# funcs parameter will have the reference of all the functions that are passed as arguments
+def combine_funcs(*funcs):
+    # this function will call the passed functions
+    # with the arguments that are passed to the functions
+    def inner_combined_func(*args, **kwargs):
+        for f in funcs:
+            # Calling functions with arguments, if any
+            f(*args, **kwargs)
+
+    # returning the reference of inner_combined_func
+    # this reference will have the called result of all
+    # the functions that are passed to the combined_funcs
+    return inner_combined_func
+
+'''
+# create a database or connect to one
+conn = sqlite3.connect("survey_record.db")
+# create cursor
+c = conn.cursor()
+# create table
+c.execute(""""CREATE TABLE form_details(
+    first_name text, last_name text, middle_name text, home_address text, date_of_birth date,
+    gender_option text, marital_status text, home_address text, city text, state text, phone_no integer, 
+    employment_status text, religion text, scale_1 integer, scale_2 integer, scale_3 integer
+    )""")
+
+
+# submit to database
+def submit():
+    # create a database or connect to one
+    submit_conn = sqlite3.connect("survey_record.db")
+    # create cursor
+    submit_c = submit_conn.cursor()
+    # insert into table
+    submit_c.execute("INSERT INTO from_details VALUES "
+                     "(:first_name, :last_name, :middle_name, :home_address, :date_of_birth, :gender_option, :marital_status, "
+                     ":city, :state, :phone_no, :employment_status, :religion, :scale_1, :scale_2, scale_3)",
+                     {
+                         "first_name": first_name.get(),
+                         "last_name": last_name.get(),
+                         "middle_name": middle_name.get(),
+                         "home_address": home_address.get(),
+                         "date_of_birth": date_of_birth.get(),
+                         "gender_option": gender_option.get(),
+                         "marital_status": marital_status.get(),
+                         "city": city.get(),
+                         "state": state.get(),
+                         "phone_no": phone_no.get(),
+                         "employment_status": employment_status.get(),
+                         "religion": religion.get(),
+                         "scale_1": scale_1.get(),
+                         "scale_2": scale_2.get(),
+                         "scale_3": scale_3.get()
+                     })
+    # commit changes
+    submit_conn.commit()
+    # close connection
+    submit_conn.close()
+    # clear the textboxes
+    first_name.delete(0, END)
+    last_name.delete(0, END)
+    middle_name.delete(0, END)
+    home_address.delete(0, END)
+    city.delete(0, END)
+    state.delete(0, END)
+    phone_no.delete(0, END)
+'''
+
+'''
 # I WILL GET BACK TO YOU LATER
 def save():
     get_firstname = first_name.get()
@@ -13,26 +84,23 @@ def save():
     get_state = state.get()
     get_phone_no = phone_no.get()
 
-    if len(get_firstname) == 0 or len(get_lastname) == 0 or len(get_middle_name) == 0 or len(get_home_address) == 0 or len(get_city) == 0 or len(get_state) == 0 or len(get_phone_no) == 0:
+    if len(get_firstname) == 0 or len(get_lastname) == 0 or len(get_middle_name) == 0 or len(
+            get_home_address) == 0 or len(get_city) == 0 or len(get_state) == 0 or len(get_phone_no) == 0:
         messagebox.showinfo(title="Oops", message="Please make sure you haven't left any fields empty.")
     else:
         is_ok = messagebox.askquestion(title="Confirmation", message="Is it okay to save?")
         if is_ok:
             messagebox.showinfo(title="SUCCESS", message="Saved Successfully!\n\nThanks for your time.")
             with open("data.txt", "a") as data_file:
-                data_file.write(f"First Name: {get_firstname} | Last Name: {get_lastname} | Middle Name: {get_middle_name} | Home Address: {get_home_address} | City: {get_city} | State: {get_state} | Phone Number: {get_phone_no}\n")
-                first_name.delete(0, END)
-                last_name.delete(0, END)
-                middle_name.delete(0, END)
-                home_address.delete(0, END)
-                city.delete(0, END)
-                state.delete(0, END)
-                phone_no.delete(0, END)
+                data_file.write(
+                    f"First Name: {get_firstname} | Last Name: {get_lastname} | Middle Name: {get_middle_name} | Home Address: {get_home_address} | City: {get_city} | State: {get_state} | Phone Number: {get_phone_no}\n")
+
 # I WILL GET BACK TO YOU LATER
+'''
 
 def demo_graph():
     demo = Tk()
-    demo.resizable(0, 0)
+    demo.resizable(False, False)
     demo.minsize(1000, 530)
     # demo.geometry("1000x530")
     demo.config(padx=15, pady=15, bg="green")
@@ -40,7 +108,7 @@ def demo_graph():
 
     # Create global scope for textbox entries
     # this helps define the variables below in order for them to be able to be used above
-    global first_name, last_name, middle_name, cal, gender_option, marital_status, home_address, city, state, phone_no, \
+    global first_name, last_name, middle_name, date_of_birth, gender_option, marital_status, home_address, city, state, phone_no, \
         employment_status, religion, scale_1, scale_2, scale_3, satisfactory_btn
 
     # SATISFACTORY SURVEY HEADING
@@ -76,8 +144,8 @@ def demo_graph():
     # Create a Date setup calendar using DateEntry
     Label(label_frame, text="Date of Birth", fg="white", bg="green", font=("Lucida", 10, "bold")).grid(row=1, column=0,
                                                                                                        pady=(10, 0))
-    cal = DateEntry(label_frame, width=27)
-    cal.grid(row=1, column=1, padx=10, pady=(10, 0))
+    date_of_birth = DateEntry(label_frame, width=27)
+    date_of_birth.grid(row=1, column=1, padx=10, pady=(10, 0))
 
     # Create a Gender option
     Label(label_frame, text="Gender", fg="white", bg="green", font=("Lucida", 10, "bold")).grid(row=1, column=2,
@@ -168,5 +236,6 @@ def demo_graph():
     scale_3.grid(row=2, column=4, columnspan=2, pady=(10, 0), sticky='NSEW')
 
     # SUBMISSION BUTTON
-    satisfactory_btn = Button(demo, text="SUBMIT", bd=5, fg="white", bg="red", relief=GROOVE, font="Times", command=save)
+    satisfactory_btn = Button(demo, text="SUBMIT", bd=5, fg="white", bg="red", relief=GROOVE, font="Times",
+                              command=combine_funcs(save, submit))
     satisfactory_btn.grid(row=4, column=0, columnspan=5, pady=(20, 0))
