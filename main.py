@@ -2,7 +2,7 @@ from tkinter import *
 # import the Pillow package to your IDE
 from PIL import Image, ImageTk
 from demographics import demo_graph
-from database import connect_database
+from database import query
 
 
 root = Tk()
@@ -34,7 +34,7 @@ Label(labelframe, text="Password:", font=("Calibri", "12", "bold"), bg="black", 
 password = Entry(labelframe, width=30)
 password.pack(side=LEFT, expand=True)
 Label(labelframe, text=" ", bg="black").pack(side=LEFT)
-admin_btn = Button(labelframe, text="ADMIN LOGIN", bd=5, fg="white", bg="black", command=connect_database)
+admin_btn = Button(labelframe, text="ADMIN LOGIN", bd=5, fg="white", bg="black", command=query)
 admin_btn.pack(side=BOTTOM)
 
 

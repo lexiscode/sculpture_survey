@@ -5,6 +5,7 @@ from tkinter import messagebox
 
 
 def save():
+    demo_graph()  # NameError: name "first_name" not defined solved!!!! Lol
     get_firstname = first_name.get()
     get_lastname = last_name.get()
     get_middle_name = middle_name.get()
@@ -36,7 +37,7 @@ def demo_graph():
     # Create global scope for textbox entries
     # this helps define the variables below in order for them to be able to be used above
     global first_name, last_name, middle_name, date_of_birth, gender_option, marital_status, home_address, city, state, phone_no, \
-        employment_status, religion, scale_1, scale_2, scale_3, satisfactory_btn
+        employment_status, religion, scale_1, scale_2, scale_3
 
     # SATISFACTORY SURVEY HEADING
     Label(demo, text="SATISFACTORY SURVEY", fg="white", bg="green", font=("Lucida", 40, "bold")).grid(row=0, column=0,

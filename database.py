@@ -8,23 +8,28 @@ from tkinter import ttk
 conn = sqlite3.connect("survey_record.db")
 # create cursor
 c = conn.cursor()
+'''
+# this code below should be enabled once and disabled afterwards
 # create table
-c.execute(""""CREATE TABLE form_details(
+c.execute("""CREATE TABLE form_details(
     first_name text, last_name text, middle_name text, home_address text, date_of_birth date,
-    gender_option text, marital_status text, home_address text, city text, state text, phone_no integer, 
+    gender_option text, marital_status text, city text, state text, phone_no integer, 
     employment_status text, religion text, scale_1 integer, scale_2 integer, scale_3 integer
     )""")
+'''
+
 
 # submit to database
 def submit():
+    demo_graph()  # NameError: name "first_name" not defined solved!!!! Lol
     # create a database or connect to one
     submit_conn = sqlite3.connect("survey_record.db")
     # create cursor
     submit_c = submit_conn.cursor()
     # insert into table
-    submit_c.execute("INSERT INTO from_details VALUES "
+    submit_c.execute("INSERT INTO form_details VALUES "
                      "(:first_name, :last_name, :middle_name, :home_address, :date_of_birth, :gender_option, :marital_status, "
-                     ":city, :state, :phone_no, :employment_status, :religion, :scale_1, :scale_2, scale_3)",
+                     ":city, :state, :phone_no, :employment_status, :religion, :scale_1, :scale_2, :scale_3)",
                      {
                          "first_name": first_name.get(),
                          "last_name": last_name.get(),
@@ -46,6 +51,8 @@ def submit():
     submit_conn.commit()
     # close connection
     submit_conn.close()
+
+    '''
     # clear the textboxes
     first_name.delete(0, END)
     last_name.delete(0, END)
@@ -54,6 +61,25 @@ def submit():
     city.delete(0, END)
     state.delete(0, END)
     phone_no.delete(0, END)
+    '''
+
+
+# create query function
+def query():
+    # create a database or connect to one
+    query_conn = sqlite3.connect("survey_record.db")
+    # create cursor
+    query_c = conn.cursor()
+
+    # query the database
+    query_c.execute("SELECT *, oid FROM form_details")
+    records = query_c.fetchall()
+    print(records)
+
+    # commit changes
+    query_conn.commit()
+    # close connection
+    query_conn.close()
 
 
 def demo_graph():
@@ -67,7 +93,7 @@ def demo_graph():
     # Create global scope for textbox entries
     # this helps define the variables below in order for them to be able to be used above
     global first_name, last_name, middle_name, date_of_birth, gender_option, marital_status, home_address, city, state, phone_no, \
-        employment_status, religion, scale_1, scale_2, scale_3, satisfactory_btn
+        employment_status, religion, scale_1, scale_2, scale_3
 
     # SATISFACTORY SURVEY HEADING
     Label(demo, text="SATISFACTORY SURVEY", fg="white", bg="green", font=("Lucida", 40, "bold")).grid(row=0, column=0,
