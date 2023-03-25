@@ -4,6 +4,17 @@ from tkcalendar import DateEntry
 from tkinter import ttk
 
 
+# create a database or connect to one
+conn = sqlite3.connect("survey_record.db")
+# create cursor
+c = conn.cursor()
+# create table
+c.execute(""""CREATE TABLE form_details(
+    first_name text, last_name text, middle_name text, home_address text, date_of_birth date,
+    gender_option text, marital_status text, home_address text, city text, state text, phone_no integer, 
+    employment_status text, religion text, scale_1 integer, scale_2 integer, scale_3 integer
+    )""")
+
 # submit to database
 def submit():
     # create a database or connect to one
@@ -43,25 +54,6 @@ def submit():
     city.delete(0, END)
     state.delete(0, END)
     phone_no.delete(0, END)
-
-
-def connect_database():
-    database = Tk()
-    database.resizable(False, False)
-    database.minsize(1000, 1000)
-    database.config(padx=15, pady=15, bg="green")
-    database.title("Database Information")
-
-    # create a database or connect to one
-    conn = sqlite3.connect("survey_record.db")
-    # create cursor
-    c = conn.cursor()
-    # create table
-    c.execute(""""CREATE TABLE form_details(
-        first_name text, last_name text, middle_name text, home_address text, date_of_birth date,
-        gender_option text, marital_status text, home_address text, city text, state text, phone_no integer, 
-        employment_status text, religion text, scale_1 integer, scale_2 integer, scale_3 integer
-        )""")
 
 
 def demo_graph():
