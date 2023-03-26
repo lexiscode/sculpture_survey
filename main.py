@@ -1,8 +1,7 @@
 from tkinter import *
 # import the Pillow package to your IDE
 from PIL import Image, ImageTk
-from demographics import demo_graph
-from database import query
+from demographics import demo_graph, query
 
 
 root = Tk()
@@ -31,7 +30,7 @@ labelframe = LabelFrame(root, text="Are you an admin? If yes, click the login bu
 labelframe.pack(expand=True)
 
 Label(labelframe, text="Password:", font=("Calibri", "12", "bold"), bg="black", fg="white").pack(side=LEFT)
-password = Entry(labelframe, width=30)
+password = Entry(labelframe, width=30, justify=CENTER)
 password.pack(side=LEFT, expand=True)
 Label(labelframe, text=" ", bg="black").pack(side=LEFT)
 admin_btn = Button(labelframe, text="ADMIN LOGIN", bd=5, fg="white", bg="black", command=query)
