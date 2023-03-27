@@ -1,8 +1,8 @@
 from tkinter import *
 # import the Pillow package to your IDE
 from PIL import Image, ImageTk
-from demographics import demo_graph, query
-
+from demographics import demo_graph
+from database_window import database_win
 
 root = Tk()
 root.resizable(False, False)
@@ -33,7 +33,7 @@ Label(labelframe, text="Password:", font=("Calibri", "12", "bold"), bg="black", 
 password = Entry(labelframe, width=30, justify=CENTER)
 password.pack(side=LEFT, expand=True)
 Label(labelframe, text=" ", bg="black").pack(side=LEFT)
-admin_btn = Button(labelframe, text="ADMIN LOGIN", bd=5, fg="white", bg="black", command=query)
+admin_btn = Button(labelframe, text="ADMIN LOGIN", bd=5, fg="white", bg="black", command=database_win)
 admin_btn.pack(side=BOTTOM)
 
 

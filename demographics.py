@@ -9,12 +9,13 @@ from tkinter import messagebox
 with sqlite3.connect("survey_record.db") as connect_db:
     # create cursor
     cursor = connect_db.cursor()
+
     '''
     # creates a table for form_details if one doesn't already exist
     cursor.execute("""CREATE TABLE form_details(
-    user_id INTEGER PRIMARY KEY, first_name TEXT, last_name TEXT, middle_name TEXT, home_address TEXT, date_of_birth DATE,
-    gender_option TEXT, marital_status TEXT, city TEXT, state TEXT, phone_no INTEGER, 
-    employment_status TEXT, religion TEXT, scale_1 INTEGER, scale_2 INTEGER, scale_3 INTEGER);
+    user_id INTEGER PRIMARY KEY, first_name TEXT, last_name TEXT, middle_name TEXT, date_of_birth DATE, gender_option TEXT,
+    marital_status TEXT, home_address TEXT, city TEXT, state TEXT, phone_no INTEGER, employment_status TEXT, religion TEXT, 
+    scale_1 INTEGER, scale_2 INTEGER, scale_3 INTEGER);
     """)
     '''
 
@@ -45,9 +46,9 @@ def submit():
         submit_conn = sqlite3.connect('survey_record.db')
         submit_cursor = submit_conn.cursor()
         submit_cursor.execute('INSERT INTO form_details VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
-                              (get_user_id, get_first_name, get_last_name, get_middle_name, get_home_address,
-                               get_date_of_birth, get_gender_option, get_marital_status, get_city, get_state, get_phone_no,
-                               get_employment_status, get_religion, get_scale_1, get_scale_2, get_scale_3)
+                              (get_user_id, get_first_name, get_last_name, get_middle_name, get_date_of_birth,
+                               get_gender_option, get_marital_status, get_home_address, get_city, get_state,
+                               get_phone_no, get_employment_status, get_religion, get_scale_1, get_scale_2, get_scale_3)
                               )
         submit_conn.commit()
         submit_conn.close()
@@ -66,21 +67,6 @@ def submit():
         employment_status.delete(0, END)
         religion.delete(0, END)
         user_id.delete(0, END)
-
-
-# create query function
-def query():
-    query_conn = sqlite3.connect("survey_record.db")
-    query_c = connect_db.cursor()
-    # query the database
-    query_c.execute("SELECT *, oid FROM form_details")
-    records = query_c.fetchall()
-    print(records)
-
-    # commit changes
-    query_conn.commit()
-    # close connection
-    query_conn.close()
 
 
 def demo_graph():
@@ -209,5 +195,4 @@ def demo_graph():
     # SUBMISSION BUTTON
     satisfactory_btn = Button(demo, text="SUBMIT", bd=5, fg="white", bg="red", relief=GROOVE, font="Times", command=submit)
     satisfactory_btn.grid(row=5, column=0, columnspan=5, pady=(20, 0))
-
 
