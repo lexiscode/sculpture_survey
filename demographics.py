@@ -20,15 +20,24 @@ with sqlite3.connect("survey_record.db") as connect_db:
 
 
 def submit():
-    get_firstname = first_name.get()
-    get_lastname = last_name.get()
+    get_user_id = user_id.get()
+    get_first_name = first_name.get()
+    get_last_name = last_name.get()
     get_middle_name = middle_name.get()
     get_home_address = home_address.get()
+    get_date_of_birth = date_of_birth.get()
+    get_gender_option = gender_option.get()
+    get_marital_status = marital_status.get()
     get_city = city.get()
     get_state = state.get()
     get_phone_no = phone_no.get()
+    get_employment_status = employment_status.get()
+    get_religion = religion.get()
+    get_scale_1 = scale_1.get()
+    get_scale_2 = scale_2.get()
+    get_scale_3 = scale_3.get()
 
-    if len(get_firstname) == 0 or len(get_lastname) == 0 or len(get_middle_name) == 0 or len(
+    if len(get_first_name) == 0 or len(get_last_name) == 0 or len(get_middle_name) == 0 or len(
             get_home_address) == 0 or len(get_city) == 0 or len(get_state) == 0 or len(get_phone_no) == 0:
         messagebox.showinfo(title="Oops", message="Please make sure you haven't left any fields empty.")
     else:
@@ -36,10 +45,9 @@ def submit():
         submit_conn = sqlite3.connect('survey_record.db')
         submit_cursor = submit_conn.cursor()
         submit_cursor.execute('INSERT INTO form_details VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
-                              (user_id.get(), first_name.get(), last_name.get(), middle_name.get(), home_address.get(),
-                               date_of_birth.get(),
-                               gender_option.get(), marital_status.get(), city.get(), state.get(), phone_no.get(),
-                               employment_status.get(), religion.get(), scale_1.get(), scale_2.get(), scale_3.get())
+                              (get_user_id, get_first_name, get_last_name, get_middle_name, get_home_address,
+                               get_date_of_birth, get_gender_option, get_marital_status, get_city, get_state, get_phone_no,
+                               get_employment_status, get_religion, get_scale_1, get_scale_2, get_scale_3)
                               )
         submit_conn.commit()
         submit_conn.close()
