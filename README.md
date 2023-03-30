@@ -20,4 +20,8 @@ The code should also be well commented with the comments explaining what key lin
 
 NB: This project is still under development.
 
+![Screenshot (769)](https://user-images.githubusercontent.com/42210784/228903745-570d91a5-285c-4aac-bc59-9019ac9da15e.png)
+![Screenshot (771)](https://user-images.githubusercontent.com/42210784/228903773-c023f86c-f24e-43cc-95a6-8f287cc98211.png)
+![Screenshot (772)](https://user-images.githubusercontent.com/42210784/228903795-f07f72cd-12f3-4713-bc5e-3d8a44a7f317.png)
+
 Inspired by Nwokorie Alex and Aniogbu Samuel
