@@ -15,3 +15,9 @@ Ideally the application should include error checking, for example if a non-nume
 For higher marks the application should include a separate tab page or window so that the hosts of the application can viiew a list of the sculpture viewers'names and the answers they submitted. The hosts should be able to see statistical values associated with the data. For example, the average age, number of women who liked the sculpture, standard deviation, etc. The application could also put the hosts page behind a password as you wouldn't want the sculpture viewers to see this.
 
 The code should also be well commented with the comments explaining what key lines or sections of code do with appropriately clear, concise and technical language. 
+
+
+
+NB: This project is still under development.
+
+Inspired by Nwokorie Alex and Aniogbu Samuel
